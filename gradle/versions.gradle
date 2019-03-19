@@ -8,6 +8,9 @@ ext {
     // Bintray
     bintray_version = "1.8.4"
 
+    // Dokka
+    dokka_version = "0.9.17"
+
     // Test
     junit_version = "4.12"
     mockito_version = "2.21.0"

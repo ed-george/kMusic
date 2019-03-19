@@ -2,3 +2,6 @@ rootProject.name = 'kmusic'
 
 // Core
 include 'kmusic-core'
+
+// Examples
+include 'examples:kmusic-demo'

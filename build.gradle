@@ -11,6 +11,8 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         // Bintray
         classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:$bintray_version"
+        // Dokka
+        classpath "org.jetbrains.dokka:dokka-gradle-plugin:$dokka_version"
     }
 }
 
@@ -21,7 +23,21 @@ allprojects {
         jcenter()
     }
 
-    group = 'uk.edgeorgedev'
+    group = 'uk.co.edgeorgedev'
     version = "$kmusic_version"
+
+    // Dokka
+    apply plugin: 'org.jetbrains.dokka'
+
+    dokka {
+        outputFormat = 'html'
+        outputDirectory = "$buildDir/javadoc"
+        reportUndocumented = true
+    }
+
+    task dokkaJar(type: Jar) {
+        classifier = 'javadoc'
+        from dokka
+    }
 
 }
