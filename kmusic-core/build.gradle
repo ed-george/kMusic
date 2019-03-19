@@ -1,0 +1,12 @@
+apply plugin: 'kotlin'
+
+archivesBaseName = 'kmusic-core'
+description = 'kMusic - A modern music library for Kotlin - ' + archivesBaseName
+
+dependencies {
+    // Kt
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
+    testCompile "junit:junit:$junit_version"
+    testCompile "org.mockito:mockito-inline:$mockito_version"
+}

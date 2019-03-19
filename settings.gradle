@@ -1,0 +1,4 @@
+rootProject.name = 'kmusic'
+
+// Core
+include 'kmusic-core'
