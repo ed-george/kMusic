@@ -14,5 +14,6 @@ ext {
     // Test
     junit_version = "4.12"
     mockito_version = "2.21.0"
+    test_logger_version = "1.6.0"
     
 }

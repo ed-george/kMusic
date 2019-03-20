@@ -1,6 +1,7 @@
 package uk.co.edgeorgedev.kmusic.data
 
-import java.io.Serializable
+import org.junit.Assert.*
+import org.junit.Test
 
 /*
  * kMusic - A modern music library for Kotlin
@@ -20,9 +21,20 @@ import java.io.Serializable
  * along with this program.  If not, see <https://www.gnu.org/licenses/>
  */
 
-/**
- * Represents a Note with a given [pitch] and duration [duration].
- * @property pitch The note being represented from min [Pitch.C0] to max [Pitch.G9]; Defaults to [Pitch.C4].
- * @property duration The duration of the note; Defaults to [Duration.QUARTER_NOTE] / [Duration.CROTCHET]
- */
-data class Note(val pitch: Pitch = Pitch.C4, val duration: Duration = Duration.QUARTER_NOTE): Serializable
+class NoteTest {
+
+    @Test
+    fun `note creation`() {
+        val note = Note(Pitch.A3, Duration.DEMI_SEMI_QUAVER)
+        assertEquals(Pitch.A3, note.pitch)
+        assertEquals(Duration.DEMI_SEMI_QUAVER, note.duration)
+    }
+
+    @Test
+    fun `note equality`() {
+        val note1 = Note(Pitch.E5, Duration.SIXTEENTH_NOTE)
+        val note2 = Note(Pitch.E5, Duration.SIXTEENTH_NOTE)
+        assertEquals(note1, note2)
+    }
+
+}

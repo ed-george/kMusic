@@ -23,11 +23,11 @@ package uk.co.edgeorgedev.kmusic.data
  * Traditional names and their equivalent modern names are available (e.g. [CROTCHET] and [QUARTER_NOTE])
  * @property value The note's relative duration
  */
-enum class Duration(private val value: Double) {
+enum class Duration(val value: Double) {
     SEMIBREVE(4.0), WHOLE_NOTE(4.0),
     MINIM(2.0), HALF_NOTE(2.0),
     CROTCHET(1.0), QUARTER_NOTE(1.0),
-    QUAVER(0.5), EIGHT_NOTE(0.5),
+    QUAVER(0.5), EIGHTH_NOTE(0.5),
     SEMI_QUAVER(0.25), SIXTEENTH_NOTE(0.25),
     DEMI_SEMI_QUAVER(0.125), THIRTYSECOND_NOTE(0.125);
 }
