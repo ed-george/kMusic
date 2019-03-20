@@ -46,6 +46,11 @@ class TimeSignature(numerator: Int = 4, denominator: Int = 4) {
         val SIX_EIGHT = TimeSignature(6, 8)
     }
 
+    /**
+     * Get the total number of beats per bar for the given time signature
+     */
+    fun totalBeatsPerBar(): Double = numerator * (4.0/denominator)
+
     override fun toString(): String {
         return "$numerator/$denominator"
     }

@@ -1,5 +1,6 @@
 package uk.co.edgeorgedev.kmusic.data
 
+import org.junit.Assert.assertEquals
 import org.junit.Test
 
 /*
@@ -30,6 +31,18 @@ class TempoTest {
     @Test(expected = IllegalArgumentException::class)
     fun `invalid tempo zero throws exception`() {
         Tempo(0)
+    }
+
+    @Test
+    fun `bpm is correct`() {
+        val tempo = Tempo(175)
+        assertEquals(175, tempo.beatsPerMinute())
+    }
+
+    @Test
+    fun `bps is correct`() {
+        val tempo = Tempo(120)
+        assertEquals(0.5, tempo.beatsPerSecond(), 0.0)
     }
 
 }

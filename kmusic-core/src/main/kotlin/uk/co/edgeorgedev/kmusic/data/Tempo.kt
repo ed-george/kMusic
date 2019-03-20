@@ -17,9 +17,25 @@ package uk.co.edgeorgedev.kmusic.data
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>
  */
-
+/**
+ * Representation of Tempo
+ * @property value the value of the tempo in bpm; Must be positive and non-zero
+ */
 class Tempo(value: Int) {
     val value = if (value > 0) value else throw IllegalArgumentException("Tempo must be greater than 0")
-    fun getPerMinute() = value
-    fun getPerSecond() = 60.0 / value
+    /**
+     * Get BPM for current tempo
+     */
+    fun beatsPerMinute() = value
+    /**
+     * Get BPS for current tempo
+     */
+    fun beatsPerSecond() = 60.0 / value
+
+    companion object {
+        /**
+         * Default tempo - 120 BPM
+         */
+        val DEFAULT = Tempo(120)
+    }
 }

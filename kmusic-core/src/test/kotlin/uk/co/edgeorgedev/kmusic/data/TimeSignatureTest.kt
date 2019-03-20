@@ -1,5 +1,6 @@
 package uk.co.edgeorgedev.kmusic.data
 
+import org.junit.Assert.assertEquals
 import org.junit.Test
 
 /*
@@ -30,6 +31,24 @@ class TimeSignatureTest {
     @Test(expected = IllegalArgumentException::class)
     fun `invalid time signature denominator`() {
         TimeSignature(4, 3)
+    }
+
+    @Test
+    fun `total beats in a bar 1`() {
+        val timeSignature = TimeSignature(4, 4)
+        assertEquals(4.0, timeSignature.totalBeatsPerBar(), 0.0)
+    }
+
+    @Test
+    fun `total beats in a bar 2`() {
+        val timeSignature = TimeSignature(6, 8)
+        assertEquals(3.0, timeSignature.totalBeatsPerBar(), 0.0)
+    }
+
+    @Test
+    fun `total beats in a bar 3`() {
+        val timeSignature = TimeSignature(9, 8)
+        assertEquals(4.5, timeSignature.totalBeatsPerBar(), 0.0)
     }
 
 }
