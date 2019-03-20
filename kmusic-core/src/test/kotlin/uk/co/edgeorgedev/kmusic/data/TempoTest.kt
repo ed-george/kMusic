@@ -20,16 +20,16 @@ import org.junit.Test
  * along with this program.  If not, see <https://www.gnu.org/licenses/>
  */
 
-class TimeSignatureTest {
+class TempoTest {
 
     @Test(expected = IllegalArgumentException::class)
-    fun `invalid time signature numerator`() {
-        TimeSignature(-2, 4)
+    fun `invalid tempo negative throws exception`() {
+        Tempo(-140)
     }
 
     @Test(expected = IllegalArgumentException::class)
-    fun `invalid time signature denominator`() {
-        TimeSignature(4, 3)
+    fun `invalid tempo zero throws exception`() {
+        Tempo(0)
     }
 
 }
