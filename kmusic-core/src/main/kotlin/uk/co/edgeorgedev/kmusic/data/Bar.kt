@@ -33,9 +33,18 @@ class Bar {
 
     /**
      * Add a note to the bar
+     * @param note Note to append to current bar
      */
     fun addNote(note: Note) {
         notes.add(note)
+    }
+
+    /**
+     * Add multiple notes to the bar
+     * @param newNotes Notes to append to current bar
+     */
+    fun addNotes(vararg newNotes: Note) {
+        notes.addAll(newNotes)
     }
 
     /**
@@ -48,8 +57,9 @@ class Bar {
 
     /**
      * The total number of beats in the bar
+     * @return the total number of beats present in the bar
      */
-    fun totalBeatsInBar() = notes.fold(0.0) { acc, note -> acc + note.duration.value }
+    fun totalBeatsInBar() = notes.sumByDouble { it.duration.value }
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
