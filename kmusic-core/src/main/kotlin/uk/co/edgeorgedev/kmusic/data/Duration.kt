@@ -24,10 +24,52 @@ package uk.co.edgeorgedev.kmusic.data
  * @property value The note's relative duration
  */
 enum class Duration(val value: Double) {
-    SEMIBREVE(4.0), WHOLE_NOTE(4.0),
-    MINIM(2.0), HALF_NOTE(2.0),
-    CROTCHET(1.0), QUARTER_NOTE(1.0),
-    QUAVER(0.5), EIGHTH_NOTE(0.5),
-    SEMI_QUAVER(0.25), SIXTEENTH_NOTE(0.25),
-    DEMI_SEMI_QUAVER(0.125), THIRTYSECOND_NOTE(0.125);
+    /**
+     * Classical representation of 4 beat note (Alias of [WHOLE_NOTE])
+     */
+    SEMIBREVE(4.0),
+    /**
+     * Modern representation of 4 beat note (Alias of [SEMIBREVE])
+     */
+    WHOLE_NOTE(4.0),
+    /**
+     * Classical representation of w beat note (Alias of [HALF_NOTE])
+     */
+    MINIM(2.0),
+    /**
+     * Modern representation of 2 beat note (Alias of [MINIM])
+     */
+    HALF_NOTE(2.0),
+    /**
+     * Classical representation of 1 beat note (Alias of [QUARTER_NOTE])
+     */
+    CROTCHET(1.0),
+    /**
+     * Modern representation of 1 beat note (Alias of [CROTCHET])
+     */
+    QUARTER_NOTE(1.0),
+    /**
+     * Classical representation of 0.5 beat note (Alias of [EIGHTH_NOTE])
+     */
+    QUAVER(0.5),
+    /**
+     * Modern representation of 0.5 beat note (Alias of [QUAVER])
+     */
+    EIGHTH_NOTE(0.5),
+    /**
+     * Classical representation of 0.25 beat note (Alias of [SIXTEENTH_NOTE])
+     */
+    SEMI_QUAVER(0.25),
+    /**
+     * Modern representation of 0.25 beat note (Alias of [SEMI_QUAVER])
+     */
+    SIXTEENTH_NOTE(0.25),
+    /**
+     * Classical representation of 0.125 beat note (Alias of [THIRTYSECOND_NOTE])
+     */
+    DEMI_SEMI_QUAVER(0.125),
+    /**
+     * Modern representation of 0.125 beat note (Alias of [DEMI_SEMI_QUAVER])
+     */
+    THIRTYSECOND_NOTE(0.125);
 }

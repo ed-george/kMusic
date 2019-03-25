@@ -19,17 +19,10 @@ package uk.co.edgeorgedev.kmusic.data
  */
 /**
  * The representation of a Bar that can contain an array of [notes]
+ * @property tempo The tempo for the bar; Defaults to [Tempo.DEFAULT]
+ * @property notes The notes contained within the Bar; Defaults to an empty [ArrayList]
  */
-class Bar {
-
-    /**
-     * The tempo for the bar - defaults to [Tempo.DEFAULT]
-     */
-    var tempo: Tempo = Tempo.DEFAULT
-    /**
-     * The notes contained within the Bar
-     */
-    val notes: MutableList<Note> = ArrayList()
+class Bar(var tempo: Tempo = Tempo.DEFAULT, val notes: MutableList<Note> = ArrayList()) {
 
     /**
      * Add a note to the bar
@@ -61,6 +54,9 @@ class Bar {
      */
     fun totalBeatsInBar() = notes.sumByDouble { it.duration.value }
 
+    /**
+     * @see Any.equals
+     */
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
@@ -73,6 +69,9 @@ class Bar {
         return true
     }
 
+    /**
+     * @see Any.hashCode
+     */
     override fun hashCode(): Int {
         var result = tempo.hashCode()
         result = 31 * result + notes.hashCode()
