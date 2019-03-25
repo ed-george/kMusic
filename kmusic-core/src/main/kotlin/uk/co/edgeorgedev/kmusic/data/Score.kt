@@ -29,16 +29,12 @@ data class Score(val title: String? = null, val phrases: MutableList<Phrase> = A
      * Add multiple phrases to the score
      * @param phrase The phrases to add
      */
-    fun addPhrases(vararg phrase: Phrase) {
-        phrases.addAll(phrase)
-    }
+    fun addPhrases(vararg phrase: Phrase) = phrases.addAll(phrase)
 
     /**
      * Add a single phrase to the score
      * @param phrase The phrase to add
      */
-    fun addPhrase(phrase: Phrase) {
-        phrases.add(phrase)
-    }
+    fun addPhrase(phrase: Phrase) = phrases.add(phrase)
 
 }

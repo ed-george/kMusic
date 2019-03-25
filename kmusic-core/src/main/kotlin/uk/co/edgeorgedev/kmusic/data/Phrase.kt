@@ -37,17 +37,13 @@ data class Phrase(val timeSignature: TimeSignature = TimeSignature.FOUR_FOUR, va
      * Add multiple bars to the current phrase
      * @param bar the bars to add to the phrase
      */
-    fun addBars(vararg bar: Bar) {
-        bars.addAll(bar)
-    }
+    fun addBars(vararg bar: Bar) = bars.addAll(bar)
 
     /**
      * Add a single bar to the current phrase
      * @param bar the bar to add to the phrase
      */
-    fun addBar(bar: Bar) {
-        bars.add(bar)
-    }
+    fun addBar(bar: Bar) = bars.add(bar)
 
     /**
      * The highest pitch within the phrase

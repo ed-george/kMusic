@@ -49,12 +49,11 @@ class TimeSignature(numerator: Int = 4, denominator: Int = 4) {
     /**
      * Get the total number of beats per bar for the given time signature
      */
-    fun totalBeatsPerBar(): Double = numerator * (4.0/denominator)
+    fun totalBeatsPerBar() = numerator * (4.0/denominator)
 
     /**
      * @see Any.toString
      */
-    override fun toString(): String {
-        return "$numerator/$denominator"
-    }
+    override fun toString() = "$numerator/$denominator"
+
 }

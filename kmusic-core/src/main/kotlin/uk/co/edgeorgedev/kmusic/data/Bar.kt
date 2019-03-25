@@ -28,17 +28,13 @@ class Bar(var tempo: Tempo = Tempo.DEFAULT, val notes: MutableList<Note> = Array
      * Add a note to the bar
      * @param note Note to append to current bar
      */
-    fun addNote(note: Note) {
-        notes.add(note)
-    }
+    fun addNote(note: Note) = notes.add(note)
 
     /**
      * Add multiple notes to the bar
      * @param newNotes Notes to append to current bar
      */
-    fun addNotes(vararg newNotes: Note) {
-        notes.addAll(newNotes)
-    }
+    fun addNotes(vararg newNotes: Note) = notes.addAll(newNotes)
 
     /**
      * Check if the bar has the correct duration of notes within it.
