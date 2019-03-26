@@ -32,11 +32,41 @@ class BarTest {
     @Test
     fun `bar with notes has correct total beats`() {
         val bar = Bar().apply {
-            addNotes(Note(duration = Duration.EIGHTH_NOTE),
+            addNotes(
+                Note(duration = Duration.EIGHTH_NOTE),
                 Note(duration = Duration.SIXTEENTH_NOTE),
                 Note(duration = Duration.SIXTEENTH_NOTE),
                 Note(duration = Duration.QUARTER_NOTE),
-                Note(duration = Duration.HALF_NOTE))
+                Note(duration = Duration.HALF_NOTE)
+            )
+        }
+        assertEquals(4.0, bar.totalBeatsInBar(), 0.0)
+    }
+
+    @Test
+    fun `bar with rests has correct total beats`() {
+        val bar = Bar().apply {
+            addNotes(
+                Rest(duration = Duration.EIGHTH_NOTE),
+                Rest(duration = Duration.SIXTEENTH_NOTE),
+                Rest(duration = Duration.SIXTEENTH_NOTE),
+                Rest(duration = Duration.QUARTER_NOTE),
+                Rest(duration = Duration.HALF_NOTE)
+            )
+        }
+        assertEquals(4.0, bar.totalBeatsInBar(), 0.0)
+    }
+
+    @Test
+    fun `bar with chords has correct total beats`() {
+        val bar = Bar().apply {
+            addNotes(
+                Chord(duration = Duration.EIGHTH_NOTE, notes = listOf(Note(pitch = Pitch.A3), Note(pitch = Pitch.C3))),
+                Chord(duration = Duration.SIXTEENTH_NOTE, notes = listOf(Note(pitch = Pitch.A3), Note(pitch = Pitch.C3))),
+                Chord(duration = Duration.SIXTEENTH_NOTE, notes = listOf(Note(pitch = Pitch.A3), Note(pitch = Pitch.C3))),
+                Chord(duration = Duration.QUARTER_NOTE, notes = listOf(Note(pitch = Pitch.A3), Note(pitch = Pitch.C3))),
+                Chord(duration = Duration.HALF_NOTE, notes = listOf(Note(pitch = Pitch.A3), Note(pitch = Pitch.C3)))
+            )
         }
         assertEquals(4.0, bar.totalBeatsInBar(), 0.0)
     }
@@ -44,12 +74,7 @@ class BarTest {
     @Test
     fun `complex bar with notes has correct total beats`() {
         val bar = Bar().apply {
-            addNotes(Note(duration = Duration.SIXTEENTH_NOTE),
-                Note(duration = Duration.SIXTEENTH_NOTE),
-                Note(duration = Duration.EIGHTH_NOTE),
-                Note(duration = Duration.SIXTEENTH_NOTE),
-                Note(duration = Duration.THIRTYSECOND_NOTE),
-                Note(duration = Duration.THIRTYSECOND_NOTE),
+            addNotes(
                 Note(duration = Duration.SIXTEENTH_NOTE),
                 Note(duration = Duration.SIXTEENTH_NOTE),
                 Note(duration = Duration.EIGHTH_NOTE),
@@ -61,7 +86,14 @@ class BarTest {
                 Note(duration = Duration.EIGHTH_NOTE),
                 Note(duration = Duration.SIXTEENTH_NOTE),
                 Note(duration = Duration.THIRTYSECOND_NOTE),
-                Note(duration = Duration.THIRTYSECOND_NOTE))
+                Note(duration = Duration.THIRTYSECOND_NOTE),
+                Note(duration = Duration.SIXTEENTH_NOTE),
+                Note(duration = Duration.SIXTEENTH_NOTE),
+                Note(duration = Duration.EIGHTH_NOTE),
+                Note(duration = Duration.SIXTEENTH_NOTE),
+                Note(duration = Duration.THIRTYSECOND_NOTE),
+                Note(duration = Duration.THIRTYSECOND_NOTE)
+            )
         }
         assertEquals(4.5, bar.totalBeatsInBar(), 0.0)
     }
@@ -73,7 +105,7 @@ class BarTest {
     }
 
     @Test
-    fun `complete bar is complete`() {
+    fun `complete bar with note is complete`() {
         val bar = Bar().apply {
             addNote(Note(duration = Duration.WHOLE_NOTE))
         }
@@ -81,30 +113,47 @@ class BarTest {
     }
 
     @Test
-    fun `complete complex bar is complete`() {
+    fun `complete bar with rest is complete`() {
         val bar = Bar().apply {
-            addNotes(Note(duration = Duration.SIXTEENTH_NOTE),
-                Note(duration = Duration.SIXTEENTH_NOTE),
-                Note(duration = Duration.EIGHTH_NOTE),
-                Note(duration = Duration.SIXTEENTH_NOTE),
-                Note(duration = Duration.THIRTYSECOND_NOTE),
-                Note(duration = Duration.THIRTYSECOND_NOTE),
-                Note(duration = Duration.SIXTEENTH_NOTE),
-                Note(duration = Duration.SIXTEENTH_NOTE),
-                Note(duration = Duration.EIGHTH_NOTE),
-                Note(duration = Duration.SIXTEENTH_NOTE),
-                Note(duration = Duration.THIRTYSECOND_NOTE),
-                Note(duration = Duration.THIRTYSECOND_NOTE),
-                Note(duration = Duration.SIXTEENTH_NOTE),
-                Note(duration = Duration.SIXTEENTH_NOTE),
-                Note(duration = Duration.EIGHTH_NOTE),
-                Note(duration = Duration.SIXTEENTH_NOTE),
-                Note(duration = Duration.THIRTYSECOND_NOTE),
-                Note(duration = Duration.THIRTYSECOND_NOTE))
+            addNote(Rest(duration = Duration.WHOLE_NOTE))
         }
-        assertTrue(bar.isBarComplete(TimeSignature(9, 8)))
+        assertTrue(bar.isBarComplete(TimeSignature.FOUR_FOUR))
+    }
+
+    @Test
+    fun `complete bar with chord is complete`() {
+        val bar = Bar().apply {
+            addNote(Chord(duration = Duration.WHOLE_NOTE, notes = listOf(Note(pitch = Pitch.A6), Note(pitch = Pitch.C6))))
+        }
+        assertTrue(bar.isBarComplete(TimeSignature.FOUR_FOUR))
     }
 
 
+    @Test
+    fun `complete complex bar is complete`() {
+        val bar = Bar().apply {
+            addNotes(
+                Note(duration = Duration.SIXTEENTH_NOTE),
+                Note(duration = Duration.SIXTEENTH_NOTE),
+                Rest(duration = Duration.EIGHTH_NOTE),
+                Note(duration = Duration.SIXTEENTH_NOTE),
+                Note(duration = Duration.THIRTYSECOND_NOTE),
+                Note(duration = Duration.THIRTYSECOND_NOTE),
+                Note(duration = Duration.SIXTEENTH_NOTE),
+                Rest(duration = Duration.SIXTEENTH_NOTE),
+                Note(duration = Duration.EIGHTH_NOTE),
+                Note(duration = Duration.SIXTEENTH_NOTE),
+                Note(duration = Duration.THIRTYSECOND_NOTE),
+                Chord(duration = Duration.THIRTYSECOND_NOTE, notes = listOf(Note(pitch = Pitch.A3), Note(pitch = Pitch.C3))),
+                Note(duration = Duration.SIXTEENTH_NOTE),
+                Note(duration = Duration.SIXTEENTH_NOTE),
+                Note(duration = Duration.EIGHTH_NOTE),
+                Rest(duration = Duration.SIXTEENTH_NOTE),
+                Note(duration = Duration.THIRTYSECOND_NOTE),
+                Note(duration = Duration.THIRTYSECOND_NOTE)
+            )
+        }
+        assertTrue(bar.isBarComplete(TimeSignature(9, 8)))
+    }
 
 }

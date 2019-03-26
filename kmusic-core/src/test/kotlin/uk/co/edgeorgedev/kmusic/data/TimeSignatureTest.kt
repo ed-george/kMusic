@@ -34,19 +34,19 @@ class TimeSignatureTest {
     }
 
     @Test
-    fun `total beats in a bar 1`() {
+    fun `total beats in a 4 4 bar`() {
         val timeSignature = TimeSignature(4, 4)
         assertEquals(4.0, timeSignature.totalBeatsPerBar(), 0.0)
     }
 
     @Test
-    fun `total beats in a bar 2`() {
+    fun `total beats in a 6 8 bar`() {
         val timeSignature = TimeSignature(6, 8)
         assertEquals(3.0, timeSignature.totalBeatsPerBar(), 0.0)
     }
 
     @Test
-    fun `total beats in a bar 3`() {
+    fun `total beats in a 9 8 bar`() {
         val timeSignature = TimeSignature(9, 8)
         assertEquals(4.5, timeSignature.totalBeatsPerBar(), 0.0)
     }
