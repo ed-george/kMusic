@@ -1,7 +1,5 @@
 package uk.co.edgeorgedev.kmusic.data
 
-import java.io.Serializable
-
 /*
  * kMusic - A modern music library for Kotlin
  * Copyright (C) 2019 Ed George
@@ -21,8 +19,31 @@ import java.io.Serializable
  */
 
 /**
+ * Representation of a musical note i.e. a musical element within a bar
+ */
+sealed class MusicNote {
+    /**
+     * The duration of the musical element within the bar
+     */
+    abstract val duration: Duration
+}
+
+/**
  * Represents a Note with a given [pitch] and duration [duration].
  * @property pitch The note being represented from min [Pitch.C0] to max [Pitch.G9]; Defaults to [Pitch.C4].
  * @property duration The duration of the note; Defaults to [Duration.QUARTER_NOTE] / [Duration.CROTCHET]
  */
-data class Note(val pitch: Pitch = Pitch.C4, val duration: Duration = Duration.QUARTER_NOTE): Serializable
+data class Note(val pitch: Pitch = Pitch.C4, override val duration: Duration = Duration.QUARTER_NOTE) : MusicNote()
+
+/**
+ * Represents a Rest with a given duration [duration].
+ * @property duration The duration of the note; Defaults to [Duration.QUARTER_NOTE] / [Duration.CROTCHET]
+ */
+data class Rest(override val duration: Duration = Duration.QUARTER_NOTE) : MusicNote()
+
+/**
+ * Represents a Chord with given [notes] and a duration [duration].
+ * @property notes The notes that make up the chord
+ * @property duration The duration of the note; Defaults to [Duration.QUARTER_NOTE] / [Duration.CROTCHET]
+ */
+data class Chord(val notes: List<Note>, override val duration: Duration = Duration.QUARTER_NOTE) : MusicNote()

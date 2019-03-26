@@ -22,19 +22,19 @@ package uk.co.edgeorgedev.kmusic.data
  * @property tempo The tempo for the bar; Defaults to [Tempo.DEFAULT]
  * @property notes The notes contained within the Bar; Defaults to an empty [ArrayList]
  */
-class Bar(var tempo: Tempo = Tempo.DEFAULT, val notes: MutableList<Note> = ArrayList()) {
+class Bar(var tempo: Tempo = Tempo.DEFAULT, val notes: MutableList<MusicNote> = ArrayList()) {
 
     /**
      * Add a note to the bar
      * @param note Note to append to current bar
      */
-    fun addNote(note: Note) = notes.add(note)
+    fun addNote(note: MusicNote) = notes.add(note)
 
     /**
      * Add multiple notes to the bar
      * @param newNotes Notes to append to current bar
      */
-    fun addNotes(vararg newNotes: Note) = notes.addAll(newNotes)
+    fun addNotes(vararg newNotes: MusicNote) = notes.addAll(newNotes)
 
     /**
      * Check if the bar has the correct duration of notes within it.

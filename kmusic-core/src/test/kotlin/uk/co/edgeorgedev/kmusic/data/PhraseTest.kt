@@ -32,9 +32,9 @@ class PhraseTest {
         bar1 = Bar()
         bar1.addNotes(
             Note(pitch = Pitch.A3),
-            Note(pitch = Pitch.REST),
-            Note(pitch = Pitch.C4), // Expected highest note
-            Note(pitch = Pitch.D3)
+            Rest(),
+            // Expected highest note E4
+            Chord(notes = arrayListOf(Note(pitch = Pitch.E4), Note(pitch = Pitch.C3)), duration = Duration.HALF_NOTE)
         )
 
         bar2 = Bar()
@@ -49,7 +49,7 @@ class PhraseTest {
     @Test
     fun `highest pitch is correct`() {
         val phrase = Phrase(bars = arrayListOf(bar1, bar2))
-        assertEquals(Pitch.C4, phrase.highestPitch())
+        assertEquals(Pitch.E4, phrase.highestPitch())
     }
 
     @Test

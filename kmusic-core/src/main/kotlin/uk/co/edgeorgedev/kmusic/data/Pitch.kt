@@ -27,12 +27,10 @@ package uk.co.edgeorgedev.kmusic.data
  * Flats are represented by the naming convention 'NbX' where N is the note name and X is the octave
  * For example: [Db4], [Gb7] or [Eb2]
  *
- * [REST] is used as a place holder 'pitch' for rests
  *
  * @property pitch The note's pitch constant
  */
 enum class Pitch(val pitch: Int) {
-    REST(Int.MIN_VALUE),
     C0(12),
     Cs0(13),
     Db0(13),

@@ -64,9 +64,15 @@ data class Phrase(val timeSignature: TimeSignature = TimeSignature.FOUR_FOUR, va
     internal fun isPhraseComplete() = if(bars.isEmpty()) false else bars.none { !it.isBarComplete(timeSignature) }
 
     /**
-     * Get the raw notes (no rests) for the phrase
+     * Get the raw notes (no rests) within the phrase
      */
-    private fun getPhraseNotes() = bars.flatMap { it.notes }.filter { it.pitch != REST }
+    private fun getPhraseNotes(): List<Note> {
+        // Get raw notes from bars
+        val notes = bars.flatMap { it.notes }.filterIsInstance<Note>()
+        // Get raw notes from chords
+        val chordNotes = bars.flatMap { it.notes }.filterIsInstance<Chord>().flatMap { it.notes }
+        return notes + chordNotes
+    }
 
     /**
      * Generates the correct stave based on the highest and lowest note within the phrase
