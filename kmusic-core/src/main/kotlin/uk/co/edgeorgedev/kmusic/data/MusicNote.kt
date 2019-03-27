@@ -25,7 +25,7 @@ sealed class MusicNote {
     /**
      * The duration of the musical element within the bar
      */
-    abstract val duration: Duration
+    abstract var duration: Duration
 }
 
 /**
@@ -33,17 +33,22 @@ sealed class MusicNote {
  * @property pitch The note being represented from min [Pitch.C0] to max [Pitch.G9]; Defaults to [Pitch.C4].
  * @property duration The duration of the note; Defaults to [Duration.QUARTER_NOTE] / [Duration.CROTCHET]
  */
-data class Note(val pitch: Pitch = Pitch.C4, override val duration: Duration = Duration.QUARTER_NOTE) : MusicNote()
+data class Note(var pitch: Pitch = Pitch.C4, override var duration: Duration = Duration.QUARTER_NOTE) : MusicNote()
 
 /**
  * Represents a Rest with a given duration [duration].
  * @property duration The duration of the note; Defaults to [Duration.QUARTER_NOTE] / [Duration.CROTCHET]
  */
-data class Rest(override val duration: Duration = Duration.QUARTER_NOTE) : MusicNote()
+data class Rest(override var duration: Duration = Duration.QUARTER_NOTE) : MusicNote()
 
 /**
  * Represents a Chord with given [notes] and a duration [duration].
  * @property notes The notes that make up the chord
  * @property duration The duration of the note; Defaults to [Duration.QUARTER_NOTE] / [Duration.CROTCHET]
  */
-data class Chord(val notes: List<Note>, override val duration: Duration = Duration.QUARTER_NOTE) : MusicNote()
+data class Chord(var notes: MutableList<Note> = ArrayList(), override var duration: Duration = Duration.QUARTER_NOTE) : MusicNote() {
+    /**
+     * Add DSL functionality to add notes to chord
+     */
+    operator fun Note.unaryPlus() = notes.add(this)
+}

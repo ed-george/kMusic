@@ -23,7 +23,7 @@ package uk.co.edgeorgedev.kmusic.data
  * @property title The nullable title of the score; Defaults to null
  * @property phrases The phrases contained within the score; Defaults to an empty [ArrayList]
  */
-data class Score(val title: String? = null, val phrases: MutableList<Phrase> = ArrayList()) {
+data class Score(var title: String? = null, val phrases: MutableList<Phrase> = ArrayList()) {
 
     /**
      * Add multiple phrases to the score
@@ -36,5 +36,10 @@ data class Score(val title: String? = null, val phrases: MutableList<Phrase> = A
      * @param phrase The phrase to add
      */
     fun addPhrase(phrase: Phrase) = phrases.add(phrase)
+
+    /**
+     * Add DSL functionality to add phrases to score
+     */
+    operator fun Phrase.unaryPlus() = phrases.add(this)
 
 }

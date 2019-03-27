@@ -22,7 +22,7 @@ package uk.co.edgeorgedev.kmusic.data
  * @property tempo The tempo for the bar; Defaults to [Tempo.DEFAULT]
  * @property notes The notes contained within the Bar; Defaults to an empty [ArrayList]
  */
-class Bar(var tempo: Tempo = Tempo.DEFAULT, val notes: MutableList<MusicNote> = ArrayList()) {
+data class Bar(var tempo: Tempo = Tempo.DEFAULT, val notes: MutableList<MusicNote> = ArrayList()) {
 
     /**
      * Add a note to the bar
@@ -51,27 +51,8 @@ class Bar(var tempo: Tempo = Tempo.DEFAULT, val notes: MutableList<MusicNote> = 
     fun totalBeatsInBar() = notes.sumByDouble { it.duration.value }
 
     /**
-     * @see Any.equals
+     * Add DSL functionality to add notes to bar
      */
-    override fun equals(other: Any?): Boolean {
-        if (this === other) return true
-        if (javaClass != other?.javaClass) return false
-
-        other as Bar
-
-        if (tempo != other.tempo) return false
-        if (notes != other.notes) return false
-
-        return true
-    }
-
-    /**
-     * @see Any.hashCode
-     */
-    override fun hashCode(): Int {
-        var result = tempo.hashCode()
-        result = 31 * result + notes.hashCode()
-        return result
-    }
+    operator fun MusicNote.unaryPlus() = notes.add(this)
 
 }

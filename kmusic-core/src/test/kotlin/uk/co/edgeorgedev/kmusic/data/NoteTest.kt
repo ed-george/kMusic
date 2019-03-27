@@ -52,15 +52,15 @@ class NoteTest {
 
     @Test
     fun `chord creation`() {
-        val chord = Chord(duration = Duration.HALF_NOTE, notes = listOf(Note(pitch = Pitch.A3), Note(pitch = Pitch.C3)))
+        val chord = Chord(duration = Duration.HALF_NOTE, notes = arrayListOf(Note(pitch = Pitch.A3), Note(pitch = Pitch.C3)))
         assertEquals(listOf(Note(pitch = Pitch.A3), Note(pitch = Pitch.C3)), chord.notes)
         assertEquals(Duration.HALF_NOTE, chord.duration)
     }
 
     @Test
     fun `chord equality`() {
-        val chord1 = Chord(duration = Duration.HALF_NOTE, notes = listOf(Note(pitch = Pitch.A3), Note(pitch = Pitch.C3)))
-        val chord2 = Chord(duration = Duration.HALF_NOTE, notes = listOf(Note(pitch = Pitch.A3), Note(pitch = Pitch.C3)))
+        val chord1 = Chord(duration = Duration.HALF_NOTE, notes = arrayListOf(Note(pitch = Pitch.A3), Note(pitch = Pitch.C3)))
+        val chord2 = Chord(duration = Duration.HALF_NOTE, notes = arrayListOf(Note(pitch = Pitch.A3), Note(pitch = Pitch.C3)))
         assertEquals(chord1, chord2)
     }
 

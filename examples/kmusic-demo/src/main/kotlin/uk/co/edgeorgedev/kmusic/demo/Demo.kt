@@ -1,6 +1,10 @@
 package uk.co.edgeorgedev.kmusic.demo
 
-import uk.co.edgeorgedev.kmusic.data.*
+import uk.co.edgeorgedev.kmusic.data.Duration.HALF_NOTE
+import uk.co.edgeorgedev.kmusic.data.Duration.QUARTER_NOTE
+import uk.co.edgeorgedev.kmusic.data.Pitch.*
+import uk.co.edgeorgedev.kmusic.data.TimeSignature
+import uk.co.edgeorgedev.kmusic.dsl.*
 
 /*
  * kMusic - A modern music library for Kotlin
@@ -21,6 +25,49 @@ import uk.co.edgeorgedev.kmusic.data.*
  */
 
 fun main() {
-    val myFirstNote = Note(Pitch.A4, Duration.HALF_NOTE)
-    println(myFirstNote)
+
+    val myFirstScore = score {
+        title = "My Score"
+
+        +phrase {
+            timeSignature = TimeSignature(5, 4)
+
+            +bar {
+                +note {
+                    duration = HALF_NOTE
+                    pitch = C4
+                }
+                +note {
+                    duration = QUARTER_NOTE
+                }
+                +note {
+                    duration = HALF_NOTE
+                    pitch = C4
+                }
+            }
+            +bar {
+                +note {
+                    duration = QUARTER_NOTE
+                    pitch = C4
+                }
+                +note {
+                    duration = QUARTER_NOTE
+                    pitch = A4
+                }
+                +rest {
+                    duration = QUARTER_NOTE
+                }
+                +chord {
+                    duration = HALF_NOTE
+                    +note{ pitch = C3}
+                    +note{ pitch = E3}
+                    +note{ pitch = G3}
+                }
+            }
+        }
+    }
+
+    println(myFirstScore)
+
 }
+

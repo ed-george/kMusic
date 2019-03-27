@@ -25,7 +25,7 @@ import uk.co.edgeorgedev.kmusic.data.Pitch.*
  * @property timeSignature Time signature applicable to the Phrase; Default to [TimeSignature.FOUR_FOUR]
  * @property bars Mutable list of bars within the Phrase. Defaults to an empty [ArrayList]
  */
-data class Phrase(val timeSignature: TimeSignature = TimeSignature.FOUR_FOUR, val bars: MutableList<Bar> = ArrayList()) {
+data class Phrase(var timeSignature: TimeSignature = TimeSignature.FOUR_FOUR, val bars: MutableList<Bar> = ArrayList()) {
 
     /**
      * The stave of the Phrase. One of [TrebleStave], [BassStave], [GrandStave] or [UnknownStave]
@@ -44,6 +44,11 @@ data class Phrase(val timeSignature: TimeSignature = TimeSignature.FOUR_FOUR, va
      * @param bar the bar to add to the phrase
      */
     fun addBar(bar: Bar) = bars.add(bar)
+
+    /**
+     * Add DSL functionality to add bar to phrase
+     */
+    operator fun Bar.unaryPlus() = bars.add(this)
 
     /**
      * The highest pitch within the phrase

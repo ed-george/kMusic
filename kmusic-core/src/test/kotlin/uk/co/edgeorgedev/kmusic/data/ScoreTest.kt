@@ -1,5 +1,8 @@
 package uk.co.edgeorgedev.kmusic.data
 
+import org.junit.Assert.assertEquals
+import org.junit.Test
+
 /*
  * kMusic - A modern music library for Kotlin
  * Copyright (C) 2019 Ed George
@@ -19,5 +22,38 @@ package uk.co.edgeorgedev.kmusic.data
  */
 
 class ScoreTest {
+
+    @Test
+    fun `score equality`() {
+        val score1 = Score(title = "DSLs Rule", phrases = arrayListOf(
+            Phrase(timeSignature = TimeSignature.SIX_EIGHT, bars = arrayListOf(
+                Bar(tempo = Tempo(120), notes = arrayListOf(
+                    Rest(duration = Duration.HALF_NOTE),
+                    Chord(duration = Duration.QUARTER_NOTE, notes = arrayListOf(
+                        Note(pitch = Pitch.C4),
+                        Note(pitch = Pitch.E4),
+                        Note(pitch = Pitch.G4)
+                    )),
+                    Note(duration = Duration.EIGHTH_NOTE, pitch = Pitch.A3)
+                ))
+            ))
+        ))
+
+        val score2 = Score(title = "DSLs Rule", phrases = arrayListOf(
+            Phrase(timeSignature = TimeSignature.SIX_EIGHT, bars = arrayListOf(
+                Bar(tempo = Tempo(120), notes = arrayListOf(
+                    Rest(duration = Duration.HALF_NOTE),
+                    Chord(duration = Duration.QUARTER_NOTE, notes = arrayListOf(
+                        Note(pitch = Pitch.C4),
+                        Note(pitch = Pitch.E4),
+                        Note(pitch = Pitch.G4)
+                    )),
+                    Note(duration = Duration.EIGHTH_NOTE, pitch = Pitch.A3)
+                ))
+            ))
+        ))
+
+        assertEquals(score1, score2)
+    }
 
 }

@@ -61,11 +61,11 @@ class BarTest {
     fun `bar with chords has correct total beats`() {
         val bar = Bar().apply {
             addNotes(
-                Chord(duration = Duration.EIGHTH_NOTE, notes = listOf(Note(pitch = Pitch.A3), Note(pitch = Pitch.C3))),
-                Chord(duration = Duration.SIXTEENTH_NOTE, notes = listOf(Note(pitch = Pitch.A3), Note(pitch = Pitch.C3))),
-                Chord(duration = Duration.SIXTEENTH_NOTE, notes = listOf(Note(pitch = Pitch.A3), Note(pitch = Pitch.C3))),
-                Chord(duration = Duration.QUARTER_NOTE, notes = listOf(Note(pitch = Pitch.A3), Note(pitch = Pitch.C3))),
-                Chord(duration = Duration.HALF_NOTE, notes = listOf(Note(pitch = Pitch.A3), Note(pitch = Pitch.C3)))
+                Chord(duration = Duration.EIGHTH_NOTE, notes = arrayListOf(Note(pitch = Pitch.A3), Note(pitch = Pitch.C3))),
+                Chord(duration = Duration.SIXTEENTH_NOTE, notes = arrayListOf(Note(pitch = Pitch.A3), Note(pitch = Pitch.C3))),
+                Chord(duration = Duration.SIXTEENTH_NOTE, notes = arrayListOf(Note(pitch = Pitch.A3), Note(pitch = Pitch.C3))),
+                Chord(duration = Duration.QUARTER_NOTE, notes = arrayListOf(Note(pitch = Pitch.A3), Note(pitch = Pitch.C3))),
+                Chord(duration = Duration.HALF_NOTE, notes = arrayListOf(Note(pitch = Pitch.A3), Note(pitch = Pitch.C3)))
             )
         }
         assertEquals(4.0, bar.totalBeatsInBar(), 0.0)
@@ -123,7 +123,7 @@ class BarTest {
     @Test
     fun `complete bar with chord is complete`() {
         val bar = Bar().apply {
-            addNote(Chord(duration = Duration.WHOLE_NOTE, notes = listOf(Note(pitch = Pitch.A6), Note(pitch = Pitch.C6))))
+            addNote(Chord(duration = Duration.WHOLE_NOTE, notes = arrayListOf(Note(pitch = Pitch.A6), Note(pitch = Pitch.C6))))
         }
         assertTrue(bar.isBarComplete(TimeSignature.FOUR_FOUR))
     }
@@ -144,7 +144,7 @@ class BarTest {
                 Note(duration = Duration.EIGHTH_NOTE),
                 Note(duration = Duration.SIXTEENTH_NOTE),
                 Note(duration = Duration.THIRTYSECOND_NOTE),
-                Chord(duration = Duration.THIRTYSECOND_NOTE, notes = listOf(Note(pitch = Pitch.A3), Note(pitch = Pitch.C3))),
+                Chord(duration = Duration.THIRTYSECOND_NOTE, notes = arrayListOf(Note(pitch = Pitch.A3), Note(pitch = Pitch.C3))),
                 Note(duration = Duration.SIXTEENTH_NOTE),
                 Note(duration = Duration.SIXTEENTH_NOTE),
                 Note(duration = Duration.EIGHTH_NOTE),
