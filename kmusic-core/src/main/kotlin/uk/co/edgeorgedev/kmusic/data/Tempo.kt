@@ -32,10 +32,33 @@ class Tempo(value: Int) {
      */
     fun beatsPerSecond() = 60.0 / value
 
+    /**
+     * @see Any.toString
+     */
+    override fun toString() = "Tempo(value=$value)"
+
+    /**
+     * @see Any.equals
+     */
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as Tempo
+
+        return value == other.value
+    }
+
+    /**
+     * @see Any.hashCode
+     */
+    override fun hashCode() = value
+
     companion object {
         /**
          * Default tempo - 120 BPM
          */
         val DEFAULT = Tempo(120)
     }
+
 }
