@@ -1,5 +1,7 @@
 package uk.co.edgeorgedev.kmusic.data
 
+import uk.co.edgeorgedev.kmusic.dsl.ScoreDslMarker
+
 /*
  * kMusic - A modern music library for Kotlin
  * Copyright (C) 2019 Ed George
@@ -23,6 +25,7 @@ package uk.co.edgeorgedev.kmusic.data
  * @property title The nullable title of the score; Defaults to null
  * @property phrases The phrases contained within the score; Defaults to an empty [ArrayList]
  */
+@ScoreDslMarker
 data class Score(var title: String? = null, val phrases: MutableList<Phrase> = ArrayList()) {
 
     /**
@@ -40,6 +43,6 @@ data class Score(var title: String? = null, val phrases: MutableList<Phrase> = A
     /**
      * Add DSL functionality to add phrases to score
      */
-    operator fun Phrase.unaryPlus() = phrases.add(this)
+    operator fun Phrase.unaryPlus() = this@Score.phrases.add(this)
 
 }

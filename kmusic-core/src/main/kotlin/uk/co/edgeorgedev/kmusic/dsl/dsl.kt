@@ -20,7 +20,10 @@ import uk.co.edgeorgedev.kmusic.data.*
  * along with this program.  If not, see <https://www.gnu.org/licenses/>
  */
 
-// TODO: Scope control as per https://kotlinlang.org/docs/reference/type-safe-builders.html#scope-control-dslmarker-since-11
+/**
+ * Add DSL Scoping
+ */
+@DslMarker annotation class ScoreDslMarker
 
 /**
  * Create [Score] object from block

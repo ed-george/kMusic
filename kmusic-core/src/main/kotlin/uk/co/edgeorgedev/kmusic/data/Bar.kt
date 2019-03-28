@@ -1,5 +1,7 @@
 package uk.co.edgeorgedev.kmusic.data
 
+import uk.co.edgeorgedev.kmusic.dsl.ScoreDslMarker
+
 /*
  * kMusic - A modern music library for Kotlin
  * Copyright (C) 2019 Ed George
@@ -22,6 +24,7 @@ package uk.co.edgeorgedev.kmusic.data
  * @property tempo The tempo for the bar; Defaults to [Tempo.DEFAULT]
  * @property notes The notes contained within the Bar; Defaults to an empty [ArrayList]
  */
+@ScoreDslMarker
 data class Bar(var tempo: Tempo = Tempo.DEFAULT, val notes: MutableList<MusicNote> = ArrayList()) {
 
     /**
@@ -53,6 +56,6 @@ data class Bar(var tempo: Tempo = Tempo.DEFAULT, val notes: MutableList<MusicNot
     /**
      * Add DSL functionality to add notes to bar
      */
-    operator fun MusicNote.unaryPlus() = notes.add(this)
+    operator fun MusicNote.unaryPlus() = this@Bar.notes.add(this)
 
 }

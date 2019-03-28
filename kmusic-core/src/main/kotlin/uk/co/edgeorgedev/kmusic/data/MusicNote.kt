@@ -1,5 +1,7 @@
 package uk.co.edgeorgedev.kmusic.data
 
+import uk.co.edgeorgedev.kmusic.dsl.ScoreDslMarker
+
 /*
  * kMusic - A modern music library for Kotlin
  * Copyright (C) 2019 Ed George
@@ -21,6 +23,7 @@ package uk.co.edgeorgedev.kmusic.data
 /**
  * Representation of a musical note i.e. a musical element within a bar
  */
+@ScoreDslMarker
 sealed class MusicNote {
     /**
      * The duration of the musical element within the bar
@@ -50,5 +53,5 @@ data class Chord(var notes: MutableList<Note> = ArrayList(), override var durati
     /**
      * Add DSL functionality to add notes to chord
      */
-    operator fun Note.unaryPlus() = notes.add(this)
+    operator fun Note.unaryPlus() = this@Chord.notes.add(this)
 }

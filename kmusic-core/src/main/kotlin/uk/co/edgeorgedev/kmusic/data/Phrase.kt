@@ -1,6 +1,7 @@
 package uk.co.edgeorgedev.kmusic.data
 
 import uk.co.edgeorgedev.kmusic.data.Pitch.*
+import uk.co.edgeorgedev.kmusic.dsl.ScoreDslMarker
 
 /*
  * kMusic - A modern music library for Kotlin
@@ -25,6 +26,7 @@ import uk.co.edgeorgedev.kmusic.data.Pitch.*
  * @property timeSignature Time signature applicable to the Phrase; Default to [TimeSignature.FOUR_FOUR]
  * @property bars Mutable list of bars within the Phrase. Defaults to an empty [ArrayList]
  */
+@ScoreDslMarker
 data class Phrase(var timeSignature: TimeSignature = TimeSignature.FOUR_FOUR, val bars: MutableList<Bar> = ArrayList()) {
 
     /**
@@ -48,7 +50,7 @@ data class Phrase(var timeSignature: TimeSignature = TimeSignature.FOUR_FOUR, va
     /**
      * Add DSL functionality to add bar to phrase
      */
-    operator fun Bar.unaryPlus() = bars.add(this)
+    operator fun Bar.unaryPlus() = this@Phrase.bars.add(this)
 
     /**
      * The highest pitch within the phrase
